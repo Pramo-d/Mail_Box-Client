@@ -10,11 +10,14 @@ import {
 } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { authAction } from "../../store/authSlice";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const dispatch=useDispatch();
 
   const navigate = useNavigate();
 
@@ -40,7 +43,8 @@ const Login = () => {
       console.log("Login user successfully");
       const data = await response.json();
       localStorage.setItem("idToken", data.idToken);
-      localStorage.setItem("email", data.email);
+      localStorage.setItem("email",data.email.replace(/[@.]/g, ""));
+      dispatch(authAction.login(data.idToken))
        navigate('/home');
     } else {
       const data = await response.json();
