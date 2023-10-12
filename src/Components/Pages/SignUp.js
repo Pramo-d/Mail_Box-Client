@@ -24,7 +24,7 @@ const SignUp = () => {
     }
      setIsLoading(true)
     const response = await fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyCdf1RrKZ3Wqq9tnpnPLlQbVddbQHUqXA0",
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyACzS76rC24yld6ld0jTYRyqkINtQVlDAA",
       {
         method: "POST",
         body: JSON.stringify({
@@ -93,14 +93,14 @@ const SignUp = () => {
                 </Form.Group>
                 {error && <p>{error}</p>}
                   <div className="text-center">
-                   {!isLoading && <Button className="mt-1" type="submit" variant="outline-success">
+                   {!isLoading && <Button className="mt-1" type="submit" variant="outline-info">
                       Create an  Account
                     </Button> }
                   </div>
               </Form>
               <p className="mb-0 mt-3 text-center">
                   Already have an account?? 
-                  <Link  to="/login" className="text-success fw-bold">
+                  <Link  to="/login" className="text-primary fw-bold">
                     Sign In
                   </Link>
                 </p>

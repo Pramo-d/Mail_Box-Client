@@ -25,7 +25,7 @@ const Login = () => {
     event.preventDefault();
     setLoading(true);
     const response = await fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyCdf1RrKZ3Wqq9tnpnPLlQbVddbQHUqXA0",
+      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyACzS76rC24yld6ld0jTYRyqkINtQVlDAA",
       {
         method: "POST",
         body: JSON.stringify({
@@ -43,9 +43,10 @@ const Login = () => {
       console.log("Login user successfully");
       const data = await response.json();
       localStorage.setItem("idToken", data.idToken);
-      localStorage.setItem("email",data.email.replace(/[@.]/g, ""));
+      localStorage.setItem("email",data.email);
+      localStorage.setItem("numberOfMails",0)
       dispatch(authAction.login(data.idToken))
-       navigate('/home');
+       navigate('/about');
     } else {
       const data = await response.json();
       if (data && data.error) {

@@ -1,61 +1,87 @@
-import React, { useState, useEffect } from "react";
-import { EditorState } from "draft-js";
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import classes from "./ComposeMail.module.css";
+import React, { useState, useEffect } from 'react';
+ import classes from './ComposeMail.module.css';
+import { EditorState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
-const MailComponent = () => {
-  const [toMail, setToMail] = useState("");
-  const [subject, setSubject] = useState("");
+
+const ComposeMail = (props) => {
+  const [to, setTo] = useState('');
+  const [subject, setSubject] = useState('');
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [mailBody, setMailBody] = useState("");
   
 
-  useEffect(() => {
+  useEffect(()=>{
     setMailBody(editorState.getCurrentContent().getPlainText());
-  }, [editorState]);
+}, [editorState]);
 
-  
+  const senderEmail= localStorage.getItem('email');
 
-  const handleSend = async () => {
-    const senderEmail = localStorage.getItem("email");
+  const handleSend = async() => {
+    
+  const changedSenderMail= senderEmail.replace(/[@.]/g, "")
     const mailData = {
-      email:toMail,
-      subject:subject,
-      message:mailBody,
-    };
+        to: to,
+        subject: subject,
+        message: mailBody,
+      };
 
-    try {
-      const response = await fetch(
-        `https://mail-box-278be-default-rtdb.firebaseio.com//mail-${senderEmail}.json`,
-        {
-          method: "POST",
-          body: JSON.stringify(mailData),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-      let data = await response.json();
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-    setToMail("");
-    setSubject("");
-    setMailBody("");
+      try{
+        const response = await fetch(
+            `https://email-box-37daa-default-rtdb.firebaseio.com//${changedSenderMail}SentMail.json`,
+            {
+              method: "POST",
+              body: JSON.stringify(mailData),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          let data = await response.json();
+          console.log(data);
+      }catch(err){
+        console.log(err);
+      }
+
+      try {
+        const mail = to.replace(/[@.]/g, "");
+        const response = await fetch(
+          `https://email-box-37daa-default-rtdb.firebaseio.com//${mail}Inbox.json`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              from: senderEmail,
+              subject: subject,
+              message: mailBody,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        let data = await response.json();
+        console.log(data);
+       
+      } catch (err) {
+        alert(err);
+      }
+
+     setTo("");
+     setSubject("");
+     setEditorState(EditorState.createEmpty());
   };
   return (
     <>
       <h2 className={classes.mailHeading}>Compose Email</h2>
 
       <div className={classes.mail_container}>
-        <div className={classes.toMail}>
+        <div className={classes.to}>
           <input
             type="email"
             placeholder="To"
-            value={toMail}
-            onChange={(e) => setToMail(e.target.value)}
+            value={to}
+            onChange={(e) => setTo(e.target.value)}
           />
         </div>
         <div className={classes.subject}>
@@ -81,4 +107,4 @@ const MailComponent = () => {
   );
 };
 
-export default MailComponent;
+export default ComposeMail;

@@ -6,17 +6,22 @@ import Header from "./Components/Header/Header";
 import Home from "./Components/Pages/Home";
 import { useSelector } from "react-redux";
 import MailComponent from "./Components/Mail/ComposeMail";
+import About from "./Components/Pages/About";
+import Inbox from "./Components/Mail/Inbox";
+
 function App() {
   const loggedIn = useSelector((state) => state.auth.isLoggedin);
-  console.log(loggedIn);
+  
   return (
     <div className="App">
       <Header />
       <Routes>
-        <Route path="/home" element={<Home />} />
-        <Route path="/mail" element={<MailComponent />} />
-        <Route path="/signup" element={<SignUp />} />
-        <Route path="/login" element={<Login />} />
+       {!loggedIn && <Route path="/signup" element={<SignUp />} />}
+       {!loggedIn && <Route path="/login" element={<Login />} />}
+       {loggedIn && <Route path="/home" element={<Home />} />}
+       {loggedIn && <Route path="/mail" element={<MailComponent />} />}
+        <Route path="/about" element={<About/>}/>
+       {loggedIn && <Route path="/inbox" element={<Inbox/>}/>}
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </div>
