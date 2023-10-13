@@ -1,31 +1,41 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import "./App.css";
-import Login from "./Components/Pages/Login";
-import SignUp from "./Components/Pages/SignUp";
-import Header from "./Components/Header/Header";
-import Home from "./Components/Pages/Home";
+import React from "react";
 import { useSelector } from "react-redux";
-import MailComponent from "./Components/Mail/ComposeMail";
-import About from "./Components/Pages/About";
-import Inbox from "./Components/Mail/Inbox";
+import { Routes, Route, Navigate } from "react-router-dom";
+
+import Header from "./Components/navbar/Header";
+import Signup from "./Components/auth/SignUp";
+import Login from "./Components/auth/Login";
+import ForgetPassword from "./Components/auth/ForgetPassword";
+import Home from "./Components/pages/Home"
+import About from "./Components/pages/About";
+import Inbox from "./Components/mailbox/Inbox";
+import OpenMails from "./Components/mailbox/OpenMails";
+import DeletedMails from "./Components/mailbox/DeletedMails";
+import Outbox from "./Components/mailbox/Outbox";
+import OpenOutbox from "./Components/mailbox/OpenOutbox";
 
 function App() {
-  const loggedIn = useSelector((state) => state.auth.isLoggedin);
-  
+  const isLoggedIn= useSelector((state) => state.auth.isLoggedIn);
+
   return (
-    <div className="App">
-      <Header />
-      <Routes>
-       {!loggedIn && <Route path="/signup" element={<SignUp />} />}
-       {!loggedIn && <Route path="/login" element={<Login />} />}
-       {loggedIn && <Route path="/home" element={<Home />} />}
-       {loggedIn && <Route path="/mail" element={<MailComponent />} />}
-        <Route path="/about" element={<About/>}/>
-       {loggedIn && <Route path="/inbox" element={<Inbox/>}/>}
-        <Route path="*" element={<Navigate to="/login" />} />
-      </Routes>
-    </div>
-  );
+    <>
+    <Header/>
+    <Routes>
+    {!isLoggedIn && <Route path="/signup" element={<Signup/>}/>}
+   {!isLoggedIn && <Route path="/login" element={<Login/>}/>}   
+   <Route path="/about" element={<About/>}/>
+   {isLoggedIn && <Route path="/home" element={<Home/>}/> }
+   {isLoggedIn && <Route path="/inbox" element={<Inbox/>}/>}
+   {isLoggedIn && <Route path="/inbox/:id" element={<OpenMails/>}/>}
+      {isLoggedIn && <Route path="/outbox" element={<Outbox/>}/>}
+      {isLoggedIn && <Route path="/outbox/:id" element={<OpenOutbox/>}/>}
+   {isLoggedIn && <Route path="/inbox/deletedMails/:id" element={<DeletedMails/>}/>}
+   {!isLoggedIn && <Route path="/forgetpassword" element={<ForgetPassword/>}/>}
+   {!isLoggedIn && <Route path='*' element={<Navigate to='/login'/>}/>}
+   {isLoggedIn && <Route path='*' element={<Navigate to='/home'/>}/>}
+    </Routes>
+    </>
+  )     
 }
 
 export default App;
