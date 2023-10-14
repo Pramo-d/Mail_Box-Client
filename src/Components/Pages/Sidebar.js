@@ -32,7 +32,7 @@ const Sidebar = () => {
           float: "left",
         }}
       >
-        <CDBSidebar  >
+        <CDBSidebar  style={{ backgroundColor:'blue' }} >
           <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"/>}>
             <Button
               variant="outline-primary"
