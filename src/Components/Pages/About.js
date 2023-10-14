@@ -1,25 +1,26 @@
 import React from "react";
-import classes from "./About.module.css";
+import styles from "./About.module.css";
 
 const About = () => {
   return (
-    <section className={classes.aboutSection}>
-      <h2>About Our Email Application</h2>
+    <section className={styles.aboutSection}>
+      <h2> Some Info for  Email Application</h2>
       <p>
         Welcome to our email application, where you can send and receive emails
-        just like any other mailbox.
+        just like any other mailbox client.
       </p>
-      <h6>In the application you access...</h6>
+      <p>
+        <h6>Our application allows you to:</h6>
+      </p>
       <ul>
-        <li>Here Compose and send emails to anyone in your contact list.</li>
+        <li>Here Compose and send emails to anyone </li>
         <li>Here Receive and read emails from your contacts.</li>
-        <li>Here Organize your emails with folders and labels.</li>
-        <li>
-          Here Search for specific emails using advanced search functionality.
-        </li>
-        <li> Here Customize your email settings </li>
+        <li>Here delete mails from emails.</li>
+        <li>Here Search emails using our search functionality.</li>
       </ul>
-      <h4>Stay Connected with Ease!</h4>
+      <p>
+        <h4>Stay connected !!</h4>
+      </p>
     </section>
   );
 };
