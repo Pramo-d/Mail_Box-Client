@@ -1,13 +1,16 @@
-import React from 'react'
+import React from "react";
 
 const Home = () => {
   return (
     <>
-    <div>
-    <h2 style={{ textAlign:"center",textDecoration:"underline"}}>Welcome to your mail box</h2>
-    </div>
+      <h2 style={{ textAlign: "center", textDecoration: "underline" }}>
+        Welcome to mail box...
+      </h2>
+      <h4 style={{ textAlign: "center" }}>
+        I'm here to provide information and guidance.
+      </h4>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
