@@ -17,7 +17,7 @@ const Outbox = () => {
     try {
       setLoading(true);
       let res = await fetch(
-        `https://email-box-37daa-default-rtdb.firebaseio.com//${mail}SentMail.json`
+        `https://email-3ff8e-default-rtdb.firebaseio.com//${mail}SentMail.json`
       );
       let data = await res.json();
       let arr = [];
@@ -39,7 +39,7 @@ const Outbox = () => {
   const DeleteHandler = async (id) => {
     console.log(id);
     const res = await fetch(
-      `https://email-box-37daa-default-rtdb.firebaseio.com//${mail}SentMail/${id}.json`,
+      `https://email-3ff8e-default-rtdb.firebaseio.com//${mail}SentMail/${id}.json`,
       {
         method: "DELETE",
         headers: {
@@ -48,7 +48,7 @@ const Outbox = () => {
       }
     );
 
-    let data = await res;
+    let data = await res.json();
     console.log(data);
     getData();
   };

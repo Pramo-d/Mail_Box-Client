@@ -2,7 +2,7 @@
 .navbar {
   position: sticky;
     width: 100%;
-      background:rgb(144, 191, 216);
+      background-image:linear-gradient(to left, rgb(144, 191, 216),rgb(42, 133, 208));
       display: flex;
       justify-content: space-around;
       align-items: center;

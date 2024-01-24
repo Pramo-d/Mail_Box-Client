@@ -21,7 +21,7 @@ const OpenMails = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `https://email-box-37daa-default-rtdb.firebaseio.com//${changedMail}Inbox/${id}.json`,
+        `https://email-3ff8e-default-rtdb.firebaseio.com//${changedMail}Inbox/${id}.json`,
         {
           method: "PATCH",
           body: JSON.stringify({

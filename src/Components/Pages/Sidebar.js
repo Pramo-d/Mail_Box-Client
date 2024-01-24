@@ -32,7 +32,7 @@ const Sidebar = () => {
           float: "left",
         }}
       >
-        <CDBSidebar  style={{ backgroundColor:'blue' }} >
+        <CDBSidebar  style={{ backgroundColor:'#A9A9A9' }} >
           <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"/>}>
             <Button
               variant="outline-primary"
@@ -48,7 +48,7 @@ const Sidebar = () => {
             <CDBBadge color="success" size="small" borderType="pill">{mailCount}</CDBBadge>}> <Link to="/inbox"><RiMailUnreadFill/> Inbox</Link></CDBSidebarMenuItem>
             <CDBSidebarMenuItem suffix={<CDBBadge size="small">4</CDBBadge>}> <TbMailOpenedFilled/> All Mails</CDBSidebarMenuItem>
              <CDBSidebarMenuItem suffix={
-              <CDBBadge color="danger" size="small" borderType="pill">{outboxMails}</CDBBadge>}><Link to="/outbox"><BiMailSend/> Outbox</Link></CDBSidebarMenuItem>
+              <CDBBadge color="danger" size="small" borderType="pill">{outboxMails}</CDBBadge>}><Link to="/outbox"><BiMailSend/> Sentbox</Link></CDBSidebarMenuItem>
              <CDBSidebarMenuItem><Link to="/inbox/deletedMails/:id"><BiTrash/> Trash</Link></CDBSidebarMenuItem>
           </CDBSidebarMenu>
           </CDBSidebarContent>

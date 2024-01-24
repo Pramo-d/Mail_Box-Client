@@ -44,7 +44,7 @@ const formattedDate = formatDate(new Date());
 
       try{
         const response = await fetch(
-            `https://email-box-37daa-default-rtdb.firebaseio.com//${changedSenderMail}SentMail.json`,
+            `https://email-3ff8e-default-rtdb.firebaseio.com//${changedSenderMail}SentMail.json`,
             {
               method: "POST",
               body: JSON.stringify(mailData),
@@ -60,9 +60,9 @@ const formattedDate = formatDate(new Date());
       }
 
       try {
-        // const mail = to.replace(/[@.]/g, "");
+        const mail = to.replace(/[@.]/g, "");
         const response = await fetch(
-          `https://email-box-37daa-default-rtdb.firebaseio.com//${changedSenderMail}Inbox.json`,
+          `https://email-3ff8e-default-rtdb.firebaseio.com//${mail}Inbox.json`,
           {
             method: "POST",
             body: JSON.stringify({

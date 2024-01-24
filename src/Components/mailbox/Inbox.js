@@ -20,7 +20,7 @@ const Inbox = () => {
     try {
       setLoading(true);
       let res = await fetch(
-        `https://email-box-37daa-default-rtdb.firebaseio.com//${changedMail}Inbox.json`
+        `https://email-3ff8e-default-rtdb.firebaseio.com//${changedMail}Inbox.json`
       );
       let data = await res.json();
       let arr = [];
@@ -55,7 +55,7 @@ const Inbox = () => {
     dispatch(mailActions.deleteMail(mail));
     console.log(mail);
     const res = await fetch(
-      `https://email-box-37daa-default-rtdb.firebaseio.com//${changedMail}Inbox/${id}.json`,
+      `https://email-3ff8e-default-rtdb.firebaseio.com//${changedMail}Inbox/${id}.json`,
       {
         method: "DELETE",
         headers: {
@@ -100,7 +100,7 @@ const Inbox = () => {
                     to={`/inbox/${data[email].id}`} >  
                   {data[email].read===false && (
                     <p className="mt-3 me-3 ms-0" style={{ marginRight: "10px", float: "left" }}>
-                      🟢
+                      📩
                     </p>
                   )}
                     {" "}
