@@ -6,7 +6,7 @@ import Header from "./Components/navbar/Header";
 import Signup from "./Components/auth/SignUp";
 import Login from "./Components/auth/Login";
 import ForgetPassword from "./Components/auth/ForgetPassword";
-import Home from "./Components/pages/Home";
+import Home from "../src/Components/pages/Home";
 import About from "./Components/pages/About";
 import Inbox from "./Components/mailbox/Inbox";
 import OpenMails from "./Components/mailbox/OpenMails";
